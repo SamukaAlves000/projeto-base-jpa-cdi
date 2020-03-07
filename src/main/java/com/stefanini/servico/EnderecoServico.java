@@ -2,6 +2,7 @@ package com.stefanini.servico;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
@@ -60,5 +61,11 @@ public class EnderecoServico implements IGenericService<Endereco, Integer>{
 	@Override
 	public Optional<Endereco> encontrar(Integer id) {
 		return dao.encontrar(id);
+	}
+	
+	public List<String> getCidadesPorUf(String uf){
+		List<String> cidades = 
+				dao.getList().get().stream().filter(p -> p.getUf().equals(uf)).map(Endereco:: getCidade).collect(Collectors.toList());
+		return cidades;
 	}
 }

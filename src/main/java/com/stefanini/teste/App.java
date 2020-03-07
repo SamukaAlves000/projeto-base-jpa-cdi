@@ -34,11 +34,27 @@ public class App {
 
 	public void executar() {
 		
+	enderecoServico.getCidadesPorUf("GO")
+	.stream()
+	.distinct()
+	.forEach(
+			c -> {
+				 	System.out.println(c);
+				 }
+			);
+	
+	
+	for (Pessoa pessoa : servico.getListPessoa("Campos Belos", "GO")) {
+		System.out.println(pessoa);
+	}
+	
 	popularBancoDeDados();
 	buscarTodos();
 	encontrar();
     salvar();
     remover();
+    
+	
 	}
 	
 	
@@ -68,6 +84,8 @@ public class App {
 	public void salvar() {
 
 	}
+	
+	
 	
 	private void popularBancoDeDados() {
 		

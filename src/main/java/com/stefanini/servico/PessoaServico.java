@@ -64,4 +64,28 @@ public class PessoaServico implements IGenericService<Pessoa, Long> {
 	public Optional<Pessoa> encontrar(Long id) {
 		return dao.encontrar(id);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Pessoa> getListPessoa(String cidade, String uf) {
+		
+		StringBuilder stringBuilder = new StringBuilder();
+		
+		stringBuilder.append("SELECT p  FROM Pessoa p");
+		stringBuilder.append(" JOIN Endereco e ON p.id = e.id ");
+		stringBuilder.append("WHERE e.cidade = '");
+		stringBuilder.append(cidade);
+		stringBuilder.append("' AND e.uf = '"+ uf +"'");
+		
+		Query query = dao.getEntityManager().createQuery(stringBuilder.toString());
+		List<Pessoa> lista = query.getResultList();
+		
+		return  lista;
+	}
+	
+	
+	
+	
+	
 }
+
+
